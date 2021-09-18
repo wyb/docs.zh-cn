@@ -77,7 +77,7 @@ TO "hdfs://host/path/to/export/lineorder_"
 PROPERTIES
 (
     "column_separator"=",",
-    "exec_mem_limit"="2147483648",
+    "load_mem_limit"="2147483648",
     "timeout" = "3600"
 )
 WITH BROKER "hdfs"
@@ -98,7 +98,7 @@ PROPERTIES如下：
 
 * `column_separator`：列分隔符。默认为 `\t`。
 * `line_delimiter`：行分隔符。默认为 `\n`。
-* `exec_mem_limit`： 表示 Export 作业中，**一个查询计划**在**单个 BE** 上的内存使用限制。默认 2GB。单位字节。
+* `load_mem_limit`： 表示 Export 作业中，**一个查询计划**在**单个 BE** 上的内存使用限制。默认 2GB。单位字节。
 * `timeout`：作业超时时间。默认为 2 小时。单位秒。
 * `include_query_id`: 导出文件名中是否包含 query id，默认为 true。
 

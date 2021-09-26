@@ -28,6 +28,7 @@
   + [Json数据导入](/loading/Json_loading.md)
 + 数据提取
   + [Export数据导出](/unloading/Export.md)
+  + [Spark Connector](/unloading/Spark_connector.md)
 + 使用StarRocks
   + [用Bitmap实现精确去重](/using_starrocks/Using_bitmap.md)
   + [用HLL实现近似去重](/using_starrocks/Using_HLL.md)

@@ -136,8 +136,8 @@ PROPERTIES
     "spark.files" = "/tmp/aaa,/tmp/bbb",
     "spark.executor.memory" = "1g",
     "spark.yarn.queue" = "queue0",
-    "spark.hadoop.yarn.resourcemanager.address" = "127.0.0.1:9999",
-    "spark.hadoop.fs.defaultFS" = "hdfs://127.0.0.1:10000",
+    "spark.hadoop.yarn.resourcemanager.address" = "127.0.0.1:8032",
+    "spark.hadoop.fs.defaultFS" = "hdfs://127.0.0.1:9000",
     "working_dir" = "hdfs://127.0.0.1:10000/tmp/starrocks",
     "broker" = "broker0",
     "broker.username" = "user0",
@@ -158,6 +158,28 @@ PROPERTIES
     "spark.hadoop.fs.defaultFS" = "hdfs://127.0.0.1:10000",
     "working_dir" = "hdfs://127.0.0.1:10000/tmp/starrocks",
     "broker" = "broker1"
+);
+
+-- HDFS HA cluster 模式
+CREATE EXTERNAL RESOURCE "spark2"
+PROPERTIES
+(
+    "type" = "spark", 
+    "spark.master" = "yarn",
+    "spark.hadoop.yarn.resourcemanager.address" = "127.0.0.1:8032",
+    "spark.hadoop.fs.defaultFS" = "hdfs://myha",
+    "spark.hadoop.dfs.nameservices" = "myha",
+    "spark.hadoop.dfs.ha.namenodes.myha" = "mynamenode1,mynamenode2",
+    "spark.hadoop.dfs.namenode.rpc-address.myha.mynamenode1" = "nn1_host:rpc_port",
+    "spark.hadoop.dfs.namenode.rpc-address.myha.mynamenode2" = "nn2_host:rpc_port",
+    "spark.hadoop.dfs.client.failover.proxy.provider" = "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider",
+    "working_dir" = "hdfs://myha/tmp/starrocks",
+    "broker" = "broker0",
+    "broker.dfs.nameservices" = "myha",
+    "broker.dfs.ha.namenodes.myha" = "mynamenode1,mynamenode2",
+    "broker.dfs.namenode.rpc-address.myha.mynamenode1" = "nn1_host:rpc_port",
+    "broker.dfs.namenode.rpc-address.myha.mynamenode2" = "nn2_host:rpc_port",
+    "broker.dfs.client.failover.proxy.provider" = "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider"
 );
 ~~~
 

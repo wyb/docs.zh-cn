@@ -184,6 +184,9 @@ FROM <data_source>
 - PLAIN
 - SCRAM-SHA-256 和 SCRAM-SHA-512
 - OAUTHBEARER
+- GSSAPI
+
+示例：
 
 - **访问 Kafka 时，使用安全协议 SSL**
 
@@ -217,7 +220,16 @@ FROM <data_source>
 
 > **说明**
 >
-> Kerberos 认证从 3.1.4 版本开始支持。
+> 1. Kerberos 认证从 3.1.4 版本开始支持。
+> 2. 需要在 BE 机器上安装 SASL 相关模块。
+> - Debian/Ubuntu:
+> ```bash
+> sudo apt-get install libsasl2-modules-gssapi-mit libsasl2-dev
+> ```
+> - CentOS/Redhat:
+> ```bash
+> sudo yum install cyrus-sasl-gssapi cyrus-sasl-devel
+> ```
 
 ### FE 和 BE 配置项
 

@@ -196,14 +196,28 @@ FROM <data_source>
 "property.ssl.key.password" = "abcdefg" -- Client 的 private key 的密码
 ```
 
-- **访问 Kafka 时，使用 SASL_PLAINTEXT 安全协议和 SASL/PLAIN 认证机制
+- **访问 Kafka 时，使用 SASL_PLAINTEXT 安全协议和 SASL/PLAIN 认证机制**
 
 ```sql
-"property.security.protocol"="SASL_PLAINTEXT", -- 指定安全协议为 SASL_PLAINTEXT
-"property.sasl.mechanism"="PLAIN", -- 指定 SASL 认证机制为 PLAIN
-"property.sasl.username"="admin", -- SASL 的用户名
-"property.sasl.password"="admin" -- SASL 的密码
+"property.security.protocol" = "SASL_PLAINTEXT", -- 指定安全协议为 SASL_PLAINTEXT
+"property.sasl.mechanism" = "PLAIN", -- 指定 SASL 认证机制为 PLAIN
+"property.sasl.username" = "admin", -- SASL 的用户名
+"property.sasl.password" = "admin" -- SASL 的密码
 ```
+
+- **访问 Kafka 时，使用 SASL_PLAINTEXT 安全协议和 Kerberos 认证机制**
+
+```sql
+"property.security.protocol" = "SASL_PLAINTEXT", -- 指定安全协议为 SASL_PLAINTEXT
+"property.sasl.mechanism" = "GSSAPI", -- 指定 SASL 认证机制为 GSSAPI, 默认是 GSSAPI
+"property.sasl.kerberos.service.name" = "kafka", -- 指定 broker service name，默认是 kafka
+"property.sasl.kerberos.keytab" = "/home/starrocks/starrocks.keytab", -- 指定 client keytab location
+"property.sasl.kerberos.principal" = "starrocks@YOUR.COM" -- 指定 kerberos principal
+```
+
+> **说明**
+>
+> Kerberos 认证从 3.1.4 版本开始支持。
 
 ### FE 和 BE 配置项
 
